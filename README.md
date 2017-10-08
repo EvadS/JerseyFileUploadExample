@@ -24,14 +24,14 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SampleJerseyApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		new SampleJerseyApplication()
-				.configure(new SpringApplicationBuilder(SampleJerseyApplication.class))
-				.run(args);
-	}
+    public static void main(String[] args) {
+        new SampleJerseyApplication()
+                .configure(new SpringApplicationBuilder(SampleJerseyApplication.class))
+                .run(args);
+    }
 
-	@Bean
-	IRootPathProvider rootPathProvider() {
+    @Bean
+    IRootPathProvider rootPathProvider() {
         return new RootPathProvider("./out");
     }
 }

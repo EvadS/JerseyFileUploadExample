@@ -4,11 +4,11 @@
 package de.bytefish.fileuploads.handler;
 
 
-import de.bytefish.fileuploads.model.FileUploadResult;
-import de.bytefish.fileuploads.model.HttpFile;
+import de.bytefish.fileuploads.model.request.FileUploadRequest;
+import de.bytefish.fileuploads.model.response.FileUploadResponse;
 
 public interface IFileUploadHandler {
 
-    FileUploadResult handle(HttpFile httpFile);
+    FileUploadResponse handle(FileUploadRequest request);
 
 }

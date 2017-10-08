@@ -4,9 +4,10 @@
 package de.bytefish.fileuploads.handler;
 
 import de.bytefish.fileuploads.exceptions.FileUploadException;
-import de.bytefish.fileuploads.model.FileUploadResult;
 import de.bytefish.fileuploads.model.HttpFile;
 import de.bytefish.fileuploads.model.ServiceError;
+import de.bytefish.fileuploads.model.request.FileUploadRequest;
+import de.bytefish.fileuploads.model.response.FileUploadResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
@@ -26,17 +27,27 @@ public class LocalStorageFileUploadHandler implements IFileUploadHandler {
     }
 
     @Override
-    public FileUploadResult handle(HttpFile httpFile) {
+    public FileUploadResponse handle(FileUploadRequest request) {
+
+        // Early exit, if there is no Request:
+        if(request == null) {
+            throw new FileUploadException(new ServiceError("missingFile", "Missing File data"), String.format("Missing Parameter: request"));
+        }
+
+        // Get the HttpFile:
+        HttpFile httpFile = request.getHttpFile();
+
+        // Early exit, if the Request has no data assigned:
         if(httpFile == null) {
-            throw new FileUploadException(new ServiceError("missingFile", "Missing File data"), String.format("Missing Parameter: httpFile"));
+            throw new FileUploadException(new ServiceError("missingFile", "Missing File data"), String.format("Missing Parameter: request"));
         }
 
         // We don't override existing files, create a new UUID File name:
-        String fileName = UUID.randomUUID().toString();
+        String targetFileName = UUID.randomUUID().toString();
 
         // Write it to Disk:
-        internalWriteFile(httpFile.getStream(), fileName);
+        internalWriteFile(httpFile.getStream(), targetFileName);
 
-        return new FileUploadResult(fileName);
+        return new FileUploadResponse(targetFileName);
     }
 }

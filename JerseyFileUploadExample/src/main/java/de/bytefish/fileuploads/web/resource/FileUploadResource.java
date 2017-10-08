@@ -4,8 +4,9 @@
 package de.bytefish.fileuploads.web.resource;
 
 import de.bytefish.fileuploads.handler.IFileUploadHandler;
-import de.bytefish.fileuploads.model.FileUploadResult;
 import de.bytefish.fileuploads.model.HttpFile;
+import de.bytefish.fileuploads.model.request.FileUploadRequest;
+import de.bytefish.fileuploads.model.response.FileUploadResponse;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 
@@ -37,13 +36,19 @@ public class FileUploadResource  {
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response fileUpload(@FormDataParam("file") InputStream stream, @FormDataParam("file") FormDataContentDisposition fileDetail) {
+    public Response fileUpload(@FormDataParam("title") String title,
+                               @FormDataParam("description") String description,
+                               @FormDataParam("file") InputStream stream,
+                               @FormDataParam("file") FormDataContentDisposition fileDetail) {
 
         // Create the HttpFile:
         HttpFile httpFile = new HttpFile(fileDetail.getName(), fileDetail.getFileName(), fileDetail.getSize(), fileDetail.getParameters(), stream);
 
+        // Create the FileUploadRequest:
+        FileUploadRequest fileUploadRequest = new FileUploadRequest(title, description, httpFile);
+
         // Handle the File Upload:
-        FileUploadResult result = fileUploadHandler.handle(httpFile);
+        FileUploadResponse result = fileUploadHandler.handle(fileUploadRequest);
 
         return Response
                 .status(200)

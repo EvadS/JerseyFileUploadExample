@@ -3,8 +3,8 @@
 
 package de.bytefish.fileuploads.exceptions;
 
-import de.bytefish.fileuploads.model.HttpServiceError;
-import de.bytefish.fileuploads.model.ServiceError;
+import de.bytefish.fileuploads.model.errors.HttpServiceError;
+import de.bytefish.fileuploads.model.errors.ServiceError;
 
 public class FileUploadException extends RuntimeException {
 

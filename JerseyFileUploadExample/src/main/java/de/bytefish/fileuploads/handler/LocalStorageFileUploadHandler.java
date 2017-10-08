@@ -4,8 +4,8 @@
 package de.bytefish.fileuploads.handler;
 
 import de.bytefish.fileuploads.exceptions.FileUploadException;
-import de.bytefish.fileuploads.model.HttpFile;
-import de.bytefish.fileuploads.model.ServiceError;
+import de.bytefish.fileuploads.model.files.HttpFile;
+import de.bytefish.fileuploads.model.errors.ServiceError;
 import de.bytefish.fileuploads.model.request.FileUploadRequest;
 import de.bytefish.fileuploads.model.response.FileUploadResponse;
 import org.springframework.stereotype.Component;

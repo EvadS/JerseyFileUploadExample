@@ -4,7 +4,7 @@
 package de.bytefish.fileuploads.web.resource;
 
 import de.bytefish.fileuploads.handler.IFileUploadHandler;
-import de.bytefish.fileuploads.model.HttpFile;
+import de.bytefish.fileuploads.model.files.HttpFile;
 import de.bytefish.fileuploads.model.request.FileUploadRequest;
 import de.bytefish.fileuploads.model.response.FileUploadResponse;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;

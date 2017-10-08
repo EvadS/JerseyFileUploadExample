@@ -1,7 +1,7 @@
 // Copyright (c) Philipp Wagner. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-package de.bytefish.fileuploads.model;
+package de.bytefish.fileuploads.model.errors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

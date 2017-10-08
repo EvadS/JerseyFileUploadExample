@@ -3,7 +3,7 @@
 
 package de.bytefish.fileuploads.model.request;
 
-import de.bytefish.fileuploads.model.HttpFile;
+import de.bytefish.fileuploads.model.files.HttpFile;
 
 public class FileUploadRequest {
 

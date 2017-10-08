@@ -1,7 +1,7 @@
 package de.bytefish.fileuploads.web.exceptions;
 
 import de.bytefish.fileuploads.exceptions.FileUploadException;
-import de.bytefish.fileuploads.model.HttpServiceError;
+import de.bytefish.fileuploads.model.errors.HttpServiceError;
 
 import javax.ws.rs.core.Response;
 

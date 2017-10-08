@@ -8,6 +8,8 @@ import de.bytefish.fileuploads.model.files.HttpFile;
 import de.bytefish.fileuploads.model.errors.ServiceError;
 import de.bytefish.fileuploads.model.request.FileUploadRequest;
 import de.bytefish.fileuploads.model.response.FileUploadResponse;
+import de.bytefish.fileuploads.provider.IRootPathProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
@@ -18,12 +20,11 @@ import java.util.UUID;
 @Component
 public class LocalStorageFileUploadHandler implements IFileUploadHandler {
 
-    private void internalWriteFile(InputStream stream, String fileName) {
-        try {
-                Files.copy(stream, Paths.get(fileName));
-        } catch(Exception e) {
-            throw new FileUploadException(new ServiceError("storingFileError", "Error writing file"), String.format("Writing File '%s' failed", fileName), e);
-        }
+    private final IRootPathProvider rootPathProvider;
+
+    @Autowired
+    public LocalStorageFileUploadHandler(IRootPathProvider rootPathProvider) {
+        this.rootPathProvider = rootPathProvider;
     }
 
     @Override
@@ -49,5 +50,13 @@ public class LocalStorageFileUploadHandler implements IFileUploadHandler {
         internalWriteFile(httpFile.getStream(), targetFileName);
 
         return new FileUploadResponse(targetFileName);
+    }
+
+    private void internalWriteFile(InputStream stream, String fileName) {
+        try {
+            Files.copy(stream, Paths.get(rootPathProvider.getRootPath(), fileName));
+        } catch(Exception e) {
+            throw new FileUploadException(new ServiceError("storingFileError", "Error writing file"), String.format("Writing File '%s' failed", fileName), e);
+        }
     }
 }

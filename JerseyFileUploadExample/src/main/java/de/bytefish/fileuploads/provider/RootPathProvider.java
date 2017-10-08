@@ -7,10 +7,6 @@ public class RootPathProvider implements IRootPathProvider {
 
     private final String path;
 
-    public RootPathProvider() {
-        this("");
-    }
-
     public RootPathProvider(String path) {
         this.path = path;
     }

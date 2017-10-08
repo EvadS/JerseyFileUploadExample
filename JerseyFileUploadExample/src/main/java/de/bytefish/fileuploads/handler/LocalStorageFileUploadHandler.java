@@ -40,7 +40,7 @@ public class LocalStorageFileUploadHandler implements IFileUploadHandler {
 
         // Early exit, if the Request has no data assigned:
         if(httpFile == null) {
-            throw new FileUploadException(new ServiceError("missingFile", "Missing File data"), String.format("Missing Parameter: request"));
+            throw new FileUploadException(new ServiceError("missingFile", "Missing File data"), String.format("Missing Parameter: request.httpFile"));
         }
 
         // We don't override existing files, create a new UUID File name:

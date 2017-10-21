@@ -6,6 +6,7 @@ package de.bytefish.fileuploads.model.errors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ServiceError {
+
     private final String code;
     private final String message;
 

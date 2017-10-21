@@ -3,8 +3,6 @@
 
 package de.bytefish.fileuploads.provider;
 
-import java.nio.file.Path;
-
 public interface IRootPathProvider {
 
     String getRootPath();

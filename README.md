@@ -2,7 +2,9 @@
 
 ## Project ##
 
-This project is a sample project for File Uploads with Jersey and Spring Boot.
+This project is a sample project for File Uploads with Jersey and Spring Boot:
+
+* [https://bytefish.de/blog/file_upload_api_jersey/](https://bytefish.de/blog/file_upload_api_jersey/)
 
 ## Server ##
 
